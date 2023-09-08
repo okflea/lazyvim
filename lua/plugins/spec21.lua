@@ -1,5 +1,8 @@
 return {
-  -- { 'codota/tabnine-nvim', build = "./dl_binaries.sh"  },
+  -- {
+  --   "folke/noice.nvim",
+  --   enabled = false,
+  -- },
   { "Exafunction/codeium.vim" },
   { "rebelot/kanagawa.nvim" },
   -- {
@@ -103,8 +106,8 @@ return {
           if cmp.visible() then
             -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
             cmp.select_next_item()
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-          -- this way you will only jump inside the snippet region
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- this way you will only jump inside the snippet region
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           elseif has_words_before() then
@@ -162,25 +165,25 @@ return {
       end
 
       local starter = require("mini.starter")
-    --stylua: ignore
-    local config = {
-      evaluate_single = true,
-      header = logo,
-      items = {
-        new_section("Find file",    "Telescope find_files", "Telescope"),
-        new_section("Recent files", "Telescope oldfiles",   "Telescope"),
-        new_section("Grep text",    "Telescope live_grep",  "Telescope"),
-        new_section("init.lua",     "e $MYVIMRC",           "Config"),
-        new_section("Lazy",         "Lazy",                 "Config"),
-        new_section("New file",     "ene | startinsert",    "Built-in"),
-        new_section("Quit",         "qa",                   "Built-in"),
-        new_section("Session restore", [[lua require("persistence").load()]], "Session"),
-      },
-      content_hooks = {
-        starter.gen_hook.adding_bullet(pad .. "░ ", false),
-        starter.gen_hook.aligning("center", "center"),
-      },
-    }
+      --stylua: ignore
+      local config = {
+        evaluate_single = true,
+        header = logo,
+        items = {
+          new_section("Find file", "Telescope find_files", "Telescope"),
+          new_section("Recent files", "Telescope oldfiles", "Telescope"),
+          new_section("Grep text", "Telescope live_grep", "Telescope"),
+          new_section("init.lua", "e $MYVIMRC", "Config"),
+          new_section("Lazy", "Lazy", "Config"),
+          new_section("New file", "ene | startinsert", "Built-in"),
+          new_section("Quit", "qa", "Built-in"),
+          new_section("Session restore", [[lua require("persistence").load()]], "Session"),
+        },
+        content_hooks = {
+          starter.gen_hook.adding_bullet(pad .. "░ ", false),
+          starter.gen_hook.aligning("center", "center"),
+        },
+      }
       return config
     end,
     config = function(_, config)
